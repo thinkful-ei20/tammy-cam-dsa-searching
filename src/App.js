@@ -1,21 +1,65 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import SearchForm from './Form';
 import './App.css';
 
-class App extends Component {
+
+//search box, two buttons
+//this.props will hold data set
+
+//pass dataset as a prop into input?
+//input ('10') component pass in the input back to here
+
+//button 1 linear
+//onClick => run the linear search on the dataset, toggle = 0
+
+
+//button 2 binary
+//onClick => run the binary search on the dataset, toggle = 1
+
+
+export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      searchTerm:'',
+      searchToggle: null,
+      //0 = linear, 1 = binary
+    }
+    //this.onLinearClick = this.onLinarClick(this);
+  }
+  onLinearClick = (e) =>{
+    e.preventDefault();
+    console.log('linear button clicked')
+    this.setState({searchToggle: 1})
+    console.log(this.state.searchToggle);
+  }
+
+  onBinaryClick = (e) => {
+    e.preventDefault();
+    console.log('binary button clicked')
+    this.setState({searchToggle: 0})
+    console.log(this.state.searchToggle);
+
+    }
+
+
+
+
+  //data = this.props.data
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Search two ways</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <SearchForm 
+        onChange={(value) => this.setState({searchTerm: value})} 
+        onClick={(e) => this.onLinearClick(e)} 
+        onBinaryClick={(e) => this.onBinaryClick(e)}
+        />
+        <p>This is where the results will go</p>
       </div>
     );
   }
 }
 
-export default App;
