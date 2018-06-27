@@ -23,7 +23,6 @@ export default class SearchForm extends React.Component{
 
   linearSearch = (num, counter = 0) => {
     let data = this.state.data;
-    // let currentCount = 0;
 
     for(let i = 0; i < data.length; i++){
       counter++;
@@ -74,7 +73,6 @@ export default class SearchForm extends React.Component{
     return 'Value not found!';
 };
   render() {
-    console.log(this.state);
     return(
       <div>
         <form>
@@ -93,7 +91,7 @@ export default class SearchForm extends React.Component{
           Binary</button>
         </form>
         {/* <span>{this.state.counter ? this.state.counter + 1 : 0}</span> */}
-        <span>{this.state.counter}</span>
+        <span>Turns: {this.state.counter}</span>
       </div>
     )
   }
