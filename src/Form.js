@@ -21,15 +21,16 @@ export default class SearchForm extends React.Component{
     this.linearSearch(parseInt(this.state.value, 10));
   }
 
-  linearSearch = (num) => {
+  linearSearch = (num, counter = 0) => {
     let data = this.state.data;
-    let currentCount = this.state.counter;
+    // let currentCount = 0;
 
-    for(let i=0; i<data.length; i++){
-      this.setState({counter: currentCount++});
+    for(let i = 0; i < data.length; i++){
+      counter++;
       if (data[i] === num) {
+        this.setState({ counter: counter });
         console.log(`Search result: ${data[i]}`);
-        console.log(`Turns it took: ${currentCount}`);
+        console.log(`Turns it took: ${counter}`);
         return data[i];
       } 
     }
@@ -43,7 +44,7 @@ export default class SearchForm extends React.Component{
     this.binarySearch(data, value);
   }
 
-  binarySearch = (array, value, start, end, counter=0) => {
+  binarySearch = (array, value, start, end, counter = 0) => {
     array = array.sort();
     start = (start === undefined) ? 0 : start
     end = (end === undefined) ? array.length : end;
@@ -58,6 +59,7 @@ export default class SearchForm extends React.Component{
     if (item === value) {
       console.log(`Index: ${index}`);
       console.log(`Turns it took: ${counter}`);
+      this.setState({ counter: counter });
       return index;
     }
     else if (item < value) {
@@ -72,22 +74,27 @@ export default class SearchForm extends React.Component{
     return 'Value not found!';
 };
   render() {
+    console.log(this.state);
     return(
-      <form>
-        <label>Search:
-        <input
-          type='search'
-          placeholder='write a number'
-          onChange={(e) => this.handleChange(e)}
-        />
-        </label>
-        <button type='submit' className='linear' 
-        onClick={(e)=> this.onLinearClick(e)}>
-        Linear</button>
-        <button type='submit' className='binary' 
-        onClick={(e) => this.onBinaryClick(e)}>
-        Binary</button>
-      </form>
+      <div>
+        <form>
+          <label>Search:
+          <input
+            type='search'
+            placeholder='write a number'
+            onChange={(e) => this.handleChange(e)}
+          />
+          </label>
+          <button type='submit' className='linear' 
+          onClick={(e)=> this.onLinearClick(e)}>
+          Linear</button>
+          <button type='submit' className='binary' 
+          onClick={(e) => this.onBinaryClick(e)}>
+          Binary</button>
+        </form>
+        {/* <span>{this.state.counter ? this.state.counter + 1 : 0}</span> */}
+        <span>{this.state.counter}</span>
+      </div>
     )
   }
 }
