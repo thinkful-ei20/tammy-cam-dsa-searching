@@ -13,33 +13,32 @@ export default class SearchForm extends React.Component{
   
   handleChange(e){
     this.setState({value: e.target.value})
-    console.log('handle search ran')
-    console.log(this.state.value)
-
+    // console.log('handle search ran')
+    // console.log(this.state.value)
   }
 
   onLinearClick = (e) =>{
     e.preventDefault();
-    console.log('linear button clicked')
+    // console.log('linear button clicked')
+    this.setState({ counter: 0 });
     this.linearSearch(parseInt(this.state.value, 10));
   }
 
   linearSearch = (num) => {
   //[89, 30, 25, 32, 72]
-    console.log('this.linearSearch ran')
-    console.log('this is value inserted to function', num);
+    // console.log('this.linearSearch ran')
+    // console.log('this is value inserted to function', num);
     let data = this.state.data;
-    console.log('this is data', data)
-    //let counter = this.state.counter;
+    // console.log('this is data', data)
+    
+    let currentCount = this.state.counter;
     for(let i=0; i<data.length; i++){
-      //console.log(data[i]);
-      //let currentCount = this.state.counter;
-      //this.setState({counter: currentCount++});
+      this.setState({counter: currentCount++});
       if(data[i] === num){
-          console.log(data[i]);
-         return data[i]
+        console.log(`Search result: ${data[i]}`);
+        console.log(`Turns it took: ${currentCount}`);
+        return data[i]
       } 
-      //console.log(this.state.counter);
     }
     console.log('Value not found');
   }
@@ -82,7 +81,7 @@ export default class SearchForm extends React.Component{
 };
   render() {
     //console.log('this is data', this.state.data)
-    console.log('this is state', this.state)
+    // console.log('this is state', this.state)
 
     return(
       <form>

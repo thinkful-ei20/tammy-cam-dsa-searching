@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchForm from './Form';
 import './App.css';
 
@@ -22,7 +22,7 @@ export default class App extends React.Component {
   data = this.props.data
   
   render() {
-    console.log(this.data)
+    // console.log(this.data)
     return (
       <div className="App">
         <header className="App-header">
